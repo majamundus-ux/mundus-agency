@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Not To Lose a Candidate in 10 Days — Mundus LLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: #050a14;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  padding: 1rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(5,10,20,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  z-index: 100;
+}
+.logo { font-size: 17px; font-weight: 800; color: #fff; letter-spacing: 0.1em; text-decoration: none; }
+.logo span { color: #2a7fff; }
+.nav-cta {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  padding: 8px 20px; border: 1px solid #2a7fff;
+  color: #2a7fff; text-decoration: none;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: #2a7fff; color: #fff; }
+
+/* SECTIONS */
+section {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+section:first-of-type { padding-top: 9rem; }
+
+.eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #2a7fff;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.eyebrow::before { content:''; width: 22px; height: 1px; background: #2a7fff; }
+
+h1 {
+  font-size: clamp(36px, 6vw, 58px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+h1 span { color: #2a7fff; }
+
+.lead {
+  font-size: 18px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+.lead strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+
+.accent { display: block; width: 32px; height: 2px; background: #2a7fff; margin: 32px 0; }
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(42,127,255,0.15);
+  margin: 0;
+}
+
+/* TIMELINE */
+.timeline { display: flex; flex-direction: column; gap: 0; margin: 32px 0; }
+.tl-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.tl-item:last-child { border-bottom: none; }
+.tl-day {
+  font-size: 13px; font-weight: 700; color: #2a7fff;
+  letter-spacing: 0.06em; min-width: 64px; padding-top: 2px;
+}
+.tl-text { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+/* COST BOX */
+.cost-box {
+  background: rgba(42,127,255,0.05);
+  border: 1px solid rgba(42,127,255,0.15);
+  border-left: 3px solid #2a7fff;
+  padding: 28px 32px;
+  margin: 32px 0;
+}
+.cost-box h3 {
+  font-size: 20px; font-weight: 800; color: #fff;
+  margin-bottom: 16px; letter-spacing: -0.01em;
+}
+.cost-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.cost-list li {
+  font-size: 16px; color: rgba(255,255,255,0.55);
+  display: flex; align-items: flex-start; gap: 12px; line-height: 1.5;
+}
+.cost-list li::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #2a7fff; flex-shrink: 0; margin-top: 7px;
+}
+
+/* RULES */
+.rules { display: flex; flex-direction: column; gap: 20px; margin: 32px 0; }
+.rule {
+  display: flex;
+  gap: 24px;
+  padding: 24px 28px;
+  background: rgba(42,127,255,0.05);
+  border: 1px solid rgba(42,127,255,0.12);
+  border-left: 3px solid #2a7fff;
+}
+.rule-num {
+  font-size: 28px; font-weight: 900; color: #2a7fff;
+  letter-spacing: -0.02em; line-height: 1; min-width: 44px;
+}
+.rule-content {}
+.rule-title {
+  font-size: 17px; font-weight: 700; color: #fff;
+  margin-bottom: 8px; line-height: 1.3;
+}
+.rule-body { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  margin: 32px 0;
+}
+.stat {
+  background: #050a14;
+  padding: 28px 24px;
+  border-top: 2px solid #2a7fff;
+}
+.stat-n {
+  font-size: 30px; font-weight: 900; color: #2a7fff;
+  letter-spacing: -0.02em; margin-bottom: 6px;
+}
+.stat-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+.stat-sub { font-size: 12px; color: rgba(255,255,255,0.38); line-height: 1.4; }
+
+/* HANDLES */
+.handles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 24px 0;
+}
+.handle-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.5;
+}
+.handle-item::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #2a7fff; flex-shrink: 0; margin-top: 8px;
+}
+
+/* CTA SECTION */
+.cta-section {
+  text-align: center;
+  background: rgba(42,127,255,0.05);
+  border: 1px solid rgba(42,127,255,0.15);
+  border-radius: 2px;
+  padding: 52px 40px;
+  margin: 40px 0;
+}
+.cta-section h2 {
+  font-size: 32px; font-weight: 900; color: #fff;
+  letter-spacing: -0.02em; margin-bottom: 12px;
+}
+.cta-section p {
+  font-size: 16px; color: rgba(255,255,255,0.45);
+  margin-bottom: 32px; line-height: 1.7;
+}
+.cta-btn {
+  display: inline-block;
+  background: #2a7fff; color: #fff;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.06em; padding: 14px 36px;
+  text-decoration: none; transition: all 0.2s;
+  margin-bottom: 20px;
+}
+.cta-btn:hover { background: #1a6fe8; transform: translateY(-1px); }
+.cta-email {
+  display: block;
+  font-size: 13px; color: rgba(42,127,255,0.6);
+  text-decoration: none; letter-spacing: 0.04em;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.04em;
+}
+
+/* Constellation background */
+.constellation-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+}
+body > *:not(.constellation-bg) { position: relative; z-index: 1; }
+
+@media (max-width: 600px) {
+  nav { padding: 1rem 1.5rem; }
+  section { padding: 5rem 1.5rem; }
+  .stats { grid-template-columns: 1fr; }
+  .handles { grid-template-columns: 1fr; }
+  .rule { flex-direction: column; gap: 8px; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Constellation SVG fixed background -->
+<svg class="constellation-bg" viewBox="0 0 800 1200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <line x1="20" y1="40" x2="80" y2="90" stroke="rgba(255,255,255,0.07)" stroke-width="0.8"/>
+  <line x1="80" y1="90" x2="160" y2="55" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+  <line x1="160" y1="55" x2="210" y2="120" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+  <line x1="80" y1="90" x2="100" y2="180" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+  <line x1="100" y1="180" x2="40" y2="250" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+  <line x1="40" y1="250" x2="130" y2="290" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+  <line x1="130" y1="290" x2="210" y2="240" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+  <line x1="680" y1="900" x2="750" y2="950" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+  <line x1="750" y1="950" x2="780" y2="1020" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+  <line x1="780" y1="1020" x2="720" y2="1080" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+  <line x1="720" y1="1080" x2="760" y2="1150" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+  <line x1="600" y1="400" x2="680" y2="440" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+  <line x1="680" y1="440" x2="750" y2="400" stroke="rgba(255,255,255,0.05)" stroke-width="0.8"/>
+  <line x1="750" y1="400" x2="790" y2="460" stroke="rgba(255,255,255,0.04)" stroke-width="0.8"/>
+  <circle cx="20" cy="40" r="2" fill="rgba(255,255,255,0.45)"/>
+  <circle cx="80" cy="90" r="2.2" fill="rgba(255,255,255,0.5)"/>
+  <circle cx="160" cy="55" r="1.8" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="210" cy="120" r="3" fill="rgba(42,127,255,0.8)"/>
+  <circle cx="100" cy="180" r="2" fill="rgba(255,255,255,0.42)"/>
+  <circle cx="40" cy="250" r="1.8" fill="rgba(255,255,255,0.38)"/>
+  <circle cx="130" cy="290" r="2.5" fill="rgba(42,127,255,0.65)"/>
+  <circle cx="210" cy="120" r="9" fill="rgba(42,127,255,0.08)"/>
+  <circle cx="680" cy="900" r="2" fill="rgba(255,255,255,0.42)"/>
+  <circle cx="750" cy="950" r="2.8" fill="rgba(42,127,255,0.75)"/>
+  <circle cx="780" cy="1020" r="2" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="720" cy="1080" r="1.8" fill="rgba(255,255,255,0.38)"/>
+  <circle cx="750" cy="950" r="8" fill="rgba(42,127,255,0.08)"/>
+  <circle cx="600" cy="400" r="1.8" fill="rgba(255,255,255,0.35)"/>
+  <circle cx="680" cy="440" r="2" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="750" cy="400" r="1.8" fill="rgba(255,255,255,0.35)"/>
+</svg>
+
+<!-- NAV -->
+<nav>
+  <a href="https://mundus.agency" class="logo">MUNDUS<span>.</span></a>
+  <a href="mailto:hello@mundus.agency?subject=Discovery Call Request" class="nav-cta">Book a free call →</a>
+</nav>
+
+<!-- COVER -->
+<section>
+  <div class="eyebrow">Free Guide — Series A & B Founders</div>
+  <h1>How not to lose<br>a candidate<br><span>in 10 days.</span></h1>
+  <p class="lead">Most founders don't lose great candidates because of salary.<br>They lose them because of <strong>silence.</strong></p>
+  <span class="accent"></span>
+</section>
+
+<hr class="divider">
+
+<!-- THE STORY -->
+<section>
+  <div class="eyebrow">The story</div>
+  <h1 style="font-size:clamp(28px,4vw,40px);">They applied. You were impressed.<br><span style="color:rgba(255,255,255,0.3);">Then a deadline hit.</span></h1>
+
+  <div class="timeline">
+    <div class="tl-item"><div class="tl-day">Day 03</div><div class="tl-text">No update from your side.</div></div>
+    <div class="tl-item"><div class="tl-day">Day 07</div><div class="tl-text">No follow-up. Candidate starts looking around.</div></div>
+    <div class="tl-item"><div class="tl-day">Day 12</div><div class="tl-text">They have two other conversations going.</div></div>
+    <div class="tl-item"><div class="tl-day">Day 18</div><div class="tl-text">They receive an offer elsewhere.</div></div>
+    <div class="tl-item"><div class="tl-day">Day 21</div><div class="tl-text">They are gone. You are starting over.</div></div>
+  </div>
+
+  <div class="cost-box">
+    <h3>The cost nobody calculates</h3>
+    <p style="font-size:16px;color:rgba(255,255,255,0.5);margin-bottom:16px;">Not the bad hire. The slow one. Every day a role stays open:</p>
+    <ul class="cost-list">
+      <li>Your team absorbs the workload — and starts to burn out</li>
+      <li>Your product moves slower than it should</li>
+      <li>The candidate you wanted is now someone else's employee</li>
+      <li>Your competitor who filled the role two weeks ago is already ahead</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 4 RULES -->
+<section>
+  <div class="eyebrow">The 4 rules</div>
+  <h1 style="font-size:clamp(28px,4vw,40px);">What keeps candidates<br><span>in your process.</span></h1>
+  <p class="lead">Apply these starting with your next open role.</p>
+
+  <div class="rules">
+    <div class="rule">
+      <div class="rule-num">01</div>
+      <div class="rule-content">
+        <div class="rule-title">Respond within 24 hours. Every time.</div>
+        <div class="rule-body">Top candidates run parallel processes. Silence reads as disinterest — even when it isn't. Set a rule: no candidate waits more than 24 hours for a response.</div>
+      </div>
+    </div>
+    <div class="rule">
+      <div class="rule-num">02</div>
+      <div class="rule-content">
+        <div class="rule-title">Define the process upfront.</div>
+        <div class="rule-body">On the first call, tell them exactly what happens next — and when. Candidates who know the timeline stay in it. Candidates left guessing start looking elsewhere.</div>
+      </div>
+    </div>
+    <div class="rule">
+      <div class="rule-num">03</div>
+      <div class="rule-content">
+        <div class="rule-title">Keep them warm between steps.</div>
+        <div class="rule-body">"We're still on track, next step is Thursday" takes 30 seconds. That message is the difference between a candidate who waits and one who moves on.</div>
+      </div>
+    </div>
+    <div class="rule">
+      <div class="rule-num">04</div>
+      <div class="rule-content">
+        <div class="rule-title">Sell the vision before the offer.</div>
+        <div class="rule-body">By the time you make an offer, they should already want to say yes. Every touchpoint is a chance to make the opportunity feel real — not just the final conversation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MUNDUS -->
+<section>
+  <div class="eyebrow">What Mundus changes</div>
+  <h1 style="font-size:clamp(28px,4vw,40px);">One recruiter.<br>One company.<br><span>No exceptions.</span></h1>
+  <p class="lead">We own the process end-to-end. Candidates never fall through the cracks because someone is always moving.</p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-n">1:1</div>
+      <div class="stat-title">Recruiter ratio</div>
+      <div class="stat-sub">Your partner works only with you</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">30 min</div>
+      <div class="stat-title">Per week from you</div>
+      <div class="stat-sub">We handle everything else</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">90-day</div>
+      <div class="stat-title">Guarantee</div>
+      <div class="stat-sub">On every completed hire</div>
+    </div>
+  </div>
+
+  <p style="font-size:15px;font-weight:600;color:#fff;margin-bottom:16px;">What Mundus handles — so you don't have to:</p>
+  <div class="handles">
+    <div class="handle-item">Active sourcing across LinkedIn, GitHub, and industry networks</div>
+    <div class="handle-item">Debrief facilitation and feedback loops</div>
+    <div class="handle-item">Personalized outreach — not templates</div>
+    <div class="handle-item">Offer structuring and negotiation support</div>
+    <div class="handle-item">Structured screening with written assessments</div>
+    <div class="handle-item">Weekly pipeline reports — no surprises</div>
+    <div class="handle-item">Interview scheduling and coordination</div>
+    <div class="handle-item">90-day replacement guarantee on every hire</div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Start with a free 30-minute call.</h2>
+    <p>No commitment. No standard packages.<br>Just an honest conversation about whether we are the right fit.</p>
+    <a href="mailto:hello@mundus.agency?subject=Discovery Call Request" class="cta-btn">Book a free discovery call →</a>
+    <a href="mailto:hello@mundus.agency" class="cta-email">hello@mundus.agency</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Mundus LLC — Strategic Talent Partners · US Based</span>
+  <span>mundus.agency</span>
+</footer>
+
+</body>
+</html>
