@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Mundus Actually Does — Mundus LLC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #050a14;
+      --blue: #2a7fff;
+      --white: #ffffff;
+      --gray: rgba(255,255,255,0.55);
+      --surface: rgba(42,127,255,0.06);
+      --surface-border: rgba(42,127,255,0.18);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.75; min-height: 100vh; }
+
+    /* CANVAS CONSTELLATION */
+    #constellation-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* All content above canvas */
+    nav, main, footer { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo { font-size: 20px; font-weight: 800; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+    .logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    nav a.nav-link { color: var(--gray); text-decoration: none; font-size: 14px; letter-spacing: 0.04em; transition: color 0.2s; }
+    nav a.nav-link:hover { color: var(--white); }
+    .nav-cta { background: var(--blue); color: var(--white) !important; padding: 10px 22px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero { max-width: 860px; margin: 0 auto; padding: 100px 40px 80px; text-align: center; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 36px; }
+    .hero-tag::before, .hero-tag::after { content: ''; width: 24px; height: 1px; background: var(--blue); }
+    .hero h1 { font-size: clamp(40px, 6vw, 68px); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 28px; }
+    .hero h1 em { font-style: normal; color: var(--blue); }
+    .hero-lead { font-size: 20px; color: var(--gray); max-width: 640px; margin: 0 auto 48px; line-height: 1.7; }
+    .hero-lead strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    .hero-divider { width: 48px; height: 2px; background: var(--blue); margin: 0 auto; }
+
+    /* INTRO */
+    .intro { max-width: 760px; margin: 0 auto; padding: 0 40px 80px; text-align: center; }
+    .intro p { color: var(--gray); margin-bottom: 20px; }
+    .intro p strong { color: var(--white); font-weight: 600; }
+
+    /* SERVICES */
+    .services { max-width: 1100px; margin: 0 auto; padding: 0 40px 100px; }
+    .services-section-label { text-align: center; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 64px; }
+    .service-block { display: grid; grid-template-columns: 260px 1fr; border-top: 1px solid rgba(255,255,255,0.06); padding: 56px 0; }
+    .service-block:last-child { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .service-number { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--blue); padding-top: 6px; }
+    .service-left { padding-right: 40px; }
+    .service-title { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: var(--white); margin: 12px 0 0; line-height: 1.2; }
+    .service-right { padding-left: 40px; border-left: 1px solid rgba(42,127,255,0.2); }
+    .service-body { color: var(--gray); font-size: 16px; line-height: 1.8; margin-bottom: 24px; }
+    .service-body strong { color: rgba(255,255,255,0.8); font-weight: 600; }
+    .service-highlight { display: inline-block; background: var(--surface); border: 1px solid var(--surface-border); border-left: 3px solid var(--blue); padding: 14px 20px; font-size: 15px; color: rgba(255,255,255,0.7); font-style: italic; }
+    .service-highlight strong { color: var(--blue); font-style: normal; font-weight: 700; }
+
+    /* DIFFERENCE */
+    .difference { background: rgba(42,127,255,0.04); border-top: 1px solid rgba(42,127,255,0.12); border-bottom: 1px solid rgba(42,127,255,0.12); padding: 80px 40px; margin-bottom: 80px; }
+    .difference-inner { max-width: 860px; margin: 0 auto; }
+    .difference h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 48px; text-align: center; }
+    .difference h2 em { font-style: normal; color: var(--blue); }
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .diff-col { padding: 36px; background: var(--bg); }
+    .diff-col-label { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px; }
+    .diff-col-label.bad { color: rgba(255,100,100,0.7); }
+    .diff-col-label.good { color: var(--blue); }
+    .diff-item { font-size: 16px; color: var(--gray); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); line-height: 1.6; }
+    .diff-item:last-child { border-bottom: none; }
+
+    /* CTA */
+    .cta-section { max-width: 680px; margin: 0 auto; padding: 0 40px 120px; text-align: center; }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 20px; line-height: 1.1; }
+    .cta-section h2 em { font-style: normal; color: var(--blue); }
+    .cta-section p { color: var(--gray); margin-bottom: 40px; font-size: 18px; }
+    .cta-box { background: var(--surface); border: 1px solid var(--surface-border); border-top: 2px solid var(--blue); padding: 36px; margin-bottom: 32px; }
+    .cta-box p { font-size: 16px; color: var(--gray); margin-bottom: 8px; }
+    .cta-box strong { color: var(--white); font-size: 18px; }
+    .btn { display: inline-block; background: var(--blue); color: var(--white); padding: 16px 36px; font-size: 15px; font-weight: 700; text-decoration: none; transition: opacity 0.2s; margin-right: 16px; margin-bottom: 12px; }
+    .btn:hover { opacity: 0.85; }
+    .btn-outline { display: inline-block; border: 1px solid rgba(42,127,255,0.4); color: var(--blue); padding: 16px 36px; font-size: 15px; font-weight: 600; text-decoration: none; margin-bottom: 12px; }
+    .btn-outline:hover { border-color: var(--blue); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; }
+    footer .logo { font-size: 16px; }
+    .footer-right { font-size: 13px; color: rgba(255,255,255,0.35); }
+    .footer-right a { color: var(--blue); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .hero, .intro, .services, .cta-section { padding-left: 24px; padding-right: 24px; }
+      .service-block { grid-template-columns: 1fr; }
+      .service-left { padding-right: 0; margin-bottom: 24px; }
+      .service-right { padding-left: 0; border-left: none; border-top: 1px solid rgba(42,127,255,0.2); padding-top: 24px; }
+      .diff-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANIMATED CONSTELLATION CANVAS -->
+<canvas id="constellation-canvas"></canvas>
+
+<nav>
+  <a href="https://mundus.agency" class="logo">MUNDUS<span>.</span></a>
+  <div class="nav-links">
+    <a href="https://mundus.agency/#partnership" class="nav-link">Partnership</a>
+    <a href="https://mundus.agency/#pricing" class="nav-link">Pricing</a>
+    <a href="https://mundus.agency/#team" class="nav-link">Team</a>
+    <a href="https://calendar.app.google/mrzwRy1cedGsvSTJ8" class="nav-cta" target="_blank">Book a call →</a>
+  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="hero-tag">What Mundus Actually Does</div>
+    <h1>More than recruiting.<br><em>Your entire hiring function.</em></h1>
+    <p class="hero-lead">Most companies think of RPO as <strong>"outsourced recruiting."</strong> That description is technically accurate — and almost entirely misleading.</p>
+    <div class="hero-divider"></div>
+  </section>
+
+  <section class="intro">
+    <p>Mundus doesn't send you candidates. <strong>We run your hiring function. Every part of it.</strong></p>
+    <p>From the first market mapping session to the signed offer letter — every stage is owned, managed, and accountable. Here is what that means in practice.</p>
+  </section>
+
+  <section class="services">
+    <div class="services-section-label">The Full Scope of a Mundus Engagement</div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <div class="service-number">01</div>
+        <h2 class="service-title">Search &amp; Sourcing</h2>
+      </div>
+      <div class="service-right">
+        <p class="service-body">Before we post a single job or send a single message, we map the market. We identify where your candidates are, who they're currently working for, and what it would take to move them. Every outreach is written specifically for that person — not a template, not a blast.</p>
+        <div class="service-highlight">Our average response rate is <strong>34%</strong>. The market average is <strong>11%</strong>.</div>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <div class="service-number">02</div>
+        <h2 class="service-title">Screening &amp; Assessment</h2>
+      </div>
+      <div class="service-right">
+        <p class="service-body">We don't filter CVs. We evaluate people. Every candidate who reaches your shortlist has been through a structured assessment covering technical fit, cultural alignment, compensation expectations, and our honest recommendation.</p>
+        <p class="service-body">You receive <strong>three to five candidates per role</strong> — each with a written brief. Never a pile to sort through.</p>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <div class="service-number">03</div>
+        <h2 class="service-title">Interview Coordination</h2>
+      </div>
+      <div class="service-right">
+        <p class="service-body">Scheduling, reminders, feedback collection, debrief facilitation — we manage the full coordination loop so nothing falls through and candidates don't go cold waiting for a reply.</p>
+        <p class="service-body">Your time commitment: <strong>one 30-minute call per week</strong>. Everything else is managed by Mundus.</p>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <div class="service-number">04</div>
+        <h2 class="service-title">Offer Management</h2>
+      </div>
+      <div class="service-right">
+        <p class="service-body">We handle the conversation that most founders dread. Offer construction, negotiation, competing offer management, and the close. We know what candidates actually care about — and how to present your opportunity in a way that lands.</p>
+        <div class="service-highlight">All engagements include a <strong>90-day replacement guarantee</strong>.</div>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <div class="service-number">05</div>
+        <h2 class="service-title">Market Intelligence</h2>
+      </div>
+      <div class="service-right">
+        <p class="service-body">Every search generates data. Salary benchmarks, market availability, competitor movements, candidate feedback. We deliver this in <strong>weekly reports</strong> so your hiring decisions are informed by what's actually happening in the market — not what happened two years ago.</p>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <div class="service-number">06</div>
+        <h2 class="service-title">Employer Brand Representation</h2>
+      </div>
+      <div class="service-right">
+        <p class="service-body">To every candidate we contact, we are your recruiting team. Every touchpoint reflects your culture, your values, and your employer brand.</p>
+        <p class="service-body"><strong>Great candidates remember how they were treated before they joined.</strong></p>
+      </div>
+    </div>
+
+    <div class="service-block">
+      <div class="service-left">
+        <div class="service-number">07</div>
+        <h2 class="service-title">Hiring Process Design</h2>
+      </div>
+      <div class="service-right">
+        <p class="service-body">For companies without an existing HR function, we don't just fill roles — we build the infrastructure. Job leveling, interview frameworks, feedback structures, offer templates.</p>
+        <div class="service-highlight">The process we build during the engagement is <strong>yours to keep</strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="difference">
+    <div class="difference-inner">
+      <h2>Not a vendor.<br><em>A partner.</em></h2>
+      <div class="diff-grid">
+        <div class="diff-col">
+          <div class="diff-col-label bad">Staffing Agency</div>
+          <div class="diff-item">Paid per placement — incentive ends at the hire</div>
+          <div class="diff-item">Shared candidates across multiple clients</div>
+          <div class="diff-item">Volume over quality</div>
+          <div class="diff-item">You manage the recruiter</div>
+          <div class="diff-item">Rotates between engagements</div>
+        </div>
+        <div class="diff-col">
+          <div class="diff-col-label good">Mundus RPO</div>
+          <div class="diff-item">Accountable for the entire process and its results</div>
+          <div class="diff-item">One recruiter, exclusively on your account</div>
+          <div class="diff-item">Curated shortlist — three to five vetted candidates per role</div>
+          <div class="diff-item">One 30-minute call per week from you</div>
+          <div class="diff-item">Continuity, context, accountability</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>One recruiter.<br><em>One company. No exceptions.</em></h2>
+    <p>See what a Mundus engagement looks like for your specific stage and hiring needs.</p>
+    <div class="cta-box">
+      <p>Start with a free 30-minute discovery call.</p>
+      <strong>No pitch. No commitment. Just clarity on what your hiring process actually needs.</strong>
+    </div>
+    <a href="https://calendar.app.google/mrzwRy1cedGsvSTJ8" class="btn" target="_blank">Book a Discovery Call →</a>
+    <a href="mailto:hello@mundus.agency" class="btn-outline">hello@mundus.agency</a>
+  </section>
+</main>
+
+<footer>
+  <a href="https://mundus.agency" class="logo">MUNDUS<span>.</span></a>
+  <div class="footer-right">
+    We Source. You Scale. &nbsp;·&nbsp;
+    <a href="https://mundus.agency">mundus.agency</a> &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/company/mundus-llc/">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  // Animated constellation — same as mundus.agency
+  const canvas = document.getElementById('constellation-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let W, H, particles;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = document.documentElement.scrollHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    const count = Math.floor((W * H) / 12000);
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.5 + 0.2
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    const maxDist = 120;
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+
+      // Move
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Bounce
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+
+      // Draw dot
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(42, 127, 255, ${p.opacity})`;
+      ctx.fill();
+
+      // Draw lines to nearby particles
+      for (let j = i + 1; j < particles.length; j++) {
+        const q = particles[j];
+        const dx = p.x - q.x;
+        const dy = p.y - q.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < maxDist) {
+          const alpha = (1 - dist / maxDist) * 0.15;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = `rgba(42, 127, 255, ${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => {
+    resize();
+    createParticles();
+  });
+
+  resize();
+  createParticles();
+  draw();
+</script>
+
+</body>
+</html>
