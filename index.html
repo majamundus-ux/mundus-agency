@@ -81,7 +81,6 @@
   .on-white .who-bar p,
   .on-white .pricing-footer,
   .on-white .final-cta-sub { color: var(--text2-dark); }
-  .on-white .service-block { border-color: var(--border-white); }
   .on-white .who-bar { background: var(--surface-white); border-color: var(--border-white); }
   .on-white .who-bar strong { color: var(--text-dark); }
   .on-white .faq-item { border-color: var(--border-white); }
@@ -574,21 +573,36 @@
     margin-right: auto;
   }
 
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
   .service-block {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto;
+    text-align: left;
+    max-width: none;
+    margin: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-top: 1px solid var(--border);
-    padding: 3.5rem 0;
+    padding: 2.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .service-block:hover {
+    border-color: rgba(42,127,255,0.35);
+    transform: translateY(-2px);
   }
 
   .service-block:last-child {
     border-bottom: 1px solid var(--border);
-    margin-bottom: 3rem;
+    margin-bottom: 0;
   }
 
   .service-left {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .service-number {
@@ -601,7 +615,7 @@
 
   .service-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
     color: var(--text);
     line-height: 1.25;
@@ -609,14 +623,14 @@
   }
 
   .service-right {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
   }
 
   .service-body {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text2-light);
-    line-height: 1.75;
+    line-height: 1.7;
     margin-bottom: 1.25rem;
   }
 
@@ -678,6 +692,66 @@
 
   .services-diff-item:last-child { border-bottom: none; }
 
+  /* GET STARTED — prominent two-card CTA */
+  .get-started-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .get-started-card {
+    background: linear-gradient(180deg, rgba(42,127,255,0.08) 0%, rgba(42,127,255,0.02) 100%);
+    border: 1px solid rgba(42,127,255,0.3);
+    padding: 3rem;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .get-started-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .get-started-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+  }
+
+  .get-started-body {
+    font-size: 16px;
+    color: var(--text2-light);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .get-started-btn {
+    padding: 16px 36px;
+    font-size: 14px;
+  }
+
+  .on-white .get-started-card { background: linear-gradient(180deg, rgba(42,127,255,0.06) 0%, rgba(42,127,255,0.01) 100%); }
+  .on-white .get-started-label { color: var(--text-dark); }
+  .on-white .get-started-body { color: var(--text2-dark); }
+
+  .service-block-full {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2rem;
+    align-items: start;
+    background: rgba(42,127,255,0.05);
+    border-color: rgba(42,127,255,0.2);
+  }
+
+  .service-block-full .service-left { margin-bottom: 0; }
+
+  .on-white .services-grid .service-block { background: var(--surface-white); border-color: var(--border-white); }
+  .on-white .services-grid .service-block:hover { border-color: rgba(42,127,255,0.4); }
+  .on-white .service-block-full { background: rgba(42,127,255,0.05); }
 
   .tiers {
     display: grid;
@@ -1572,7 +1646,9 @@
     .tiers { grid-template-columns: 1fr; }
     .blog-grid { grid-template-columns: 1fr; }
     .blog-card.featured { grid-template-columns: 1fr; }
-    .service-block { padding: 2.5rem 0; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-block { padding: 2rem; }
+    .service-block-full { grid-template-columns: 1fr; }
     .services-diff-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
   }
@@ -1647,6 +1723,7 @@
         <p class="services-intro">Mundus operates across seven specialized sectors, each dedicated to the specific demands of the industries we serve. Here's exactly what we do — and who to come to us for.</p>
       </div>
 
+      <div class="services-grid">
       <div class="service-block">
         <div class="service-left">
           <div class="service-number">01</div>
@@ -1707,7 +1784,7 @@
         </div>
       </div>
 
-      <div class="service-block">
+      <div class="service-block service-block-full">
         <div class="service-left">
           <div class="service-number">07</div>
           <div class="service-title">Ready to Go</div>
@@ -1716,6 +1793,7 @@
           <p class="service-body">Across all these teams, we maintain a pipeline of pre-vetted, ready-to-place candidates in multiple active roles — including CDL drivers for U.S. carrier placements, AI/ML engineers from the Balkans available for remote work or relocation, and additional remote-ready tech and design talent sourced through our global partner network.</p>
           <div class="service-highlight">When you're ready to hire, you're <strong>not starting from zero.</strong></div>
         </div>
+      </div>
       </div>
 
       <p class="pricing-footer" style="margin-top:1rem;">
@@ -1732,16 +1810,21 @@
   <canvas class="section-canvas" id="canvas-get-started"></canvas>
   <div class="section-wrap">
     <div class="container">
-      <div class="services-diff-grid">
-        <div class="services-diff-col">
-          <div class="services-diff-label good">Need to hire?</div>
-          <p style="font-size:16px; color:var(--text2-light); line-height:1.7; margin-bottom:1.5rem;">Bring us a role — in any of our seven verticals — and we'll run the search for you, end to end.</p>
-          <a href="mailto:hello@mundus.agency?subject=Recruit for me — New Client Enquiry" class="btn-primary" style="display:inline-block;">Recruit for me →</a>
+      <div class="section-header">
+        <div class="eyebrow">Get Started</div>
+        <h2 class="title">Two ways to<br><em>work with us.</em></h2>
+      </div>
+
+      <div class="get-started-grid">
+        <div class="get-started-card">
+          <div class="get-started-label">Need to hire?</div>
+          <p class="get-started-body">Bring us a role — in any of our seven verticals — and we'll run the search for you, end to end.</p>
+          <a href="mailto:hello@mundus.agency?subject=Recruit for me — New Client Enquiry" class="btn-primary get-started-btn">Recruit for me →</a>
         </div>
-        <div class="services-diff-col">
-          <div class="services-diff-label good">A recruiter or agency?</div>
-          <p style="font-size:16px; color:var(--text2-light); line-height:1.7; margin-bottom:1.5rem;">Overflow support, market reach, or extra sourcing power — we partner with recruiters however it works best. You keep the relationship, we share the work.</p>
-          <a href="mailto:partnership@mundus.agency?subject=Partnership Request" class="btn-primary" style="display:inline-block;">Request a partnership →</a>
+        <div class="get-started-card">
+          <div class="get-started-label">A recruiter or agency?</div>
+          <p class="get-started-body">Overflow support, market reach, or extra sourcing power — we partner with recruiters however it works best. You keep the relationship, we share the work.</p>
+          <a href="mailto:partnership@mundus.agency?subject=Partnership Request" class="btn-primary get-started-btn">Request a partnership →</a>
         </div>
       </div>
     </div>
@@ -2125,4 +2208,126 @@
           ctx.beginPath();
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(mouse.x, mouse.y);
- 
+          ctx.strokeStyle = 'rgba(42,127,255,' + malpha + ')';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+
+      nodes.forEach(function(n) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.accent ? n.r + 1.5 : n.r, 0, Math.PI*2);
+        ctx.fillStyle = n.accent ? 'rgba(42,127,255,0.75)' : 'rgba(255,255,255,0.65)';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, (n.accent ? n.r+2 : n.r) * 2.5, 0, Math.PI*2);
+        ctx.fillStyle = n.accent ? 'rgba(42,127,255,0.08)' : 'rgba(255,255,255,0.03)';
+        ctx.fill();
+      });
+    }
+
+    function update() {
+      nodes.forEach(function(n) {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+      });
+    }
+
+    function loop() { update(); draw(); requestAnimationFrame(loop); }
+
+    window.addEventListener('resize', resize);
+    var hero = document.getElementById('hero');
+    hero.addEventListener('mousemove', function(e) {
+      var rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    hero.addEventListener('mouseleave', function() { mouse.x = -9999; mouse.y = -9999; });
+
+    init(); loop();
+  })();
+
+  // SECTION CONSTELLATION CANVASES
+  (function() {
+    var sectionIds = [
+      'canvas-how-we-work','canvas-get-started','canvas-candidates','canvas-credibility','canvas-team','canvas-faq',
+      'canvas-blog','canvas-final-cta'
+    ];
+
+    var COUNT = 55;
+    var MAX_DIST = 130;
+
+    function initCanvas(canvasEl) {
+      var ctx = canvasEl.getContext('2d');
+      var W, H, nodes;
+      var isWhite = canvasEl.closest('.on-white') !== null;
+
+      function resize() {
+        W = canvasEl.width = canvasEl.offsetWidth;
+        H = canvasEl.height = canvasEl.offsetHeight;
+      }
+
+      function init() {
+        resize();
+        nodes = Array.from({ length: COUNT }, function() {
+          return {
+            x: Math.random() * W,
+            y: Math.random() * H,
+            vx: (Math.random() - 0.5) * 0.22,
+            vy: (Math.random() - 0.5) * 0.22,
+            r: Math.random() * 1.5 + 1,
+            accent: Math.random() < 0.08
+          };
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (var i = 0; i < nodes.length; i++) {
+          for (var j = i + 1; j < nodes.length; j++) {
+            var dx = nodes[i].x - nodes[j].x;
+            var dy = nodes[i].y - nodes[j].y;
+            var dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < MAX_DIST) {
+              var alpha = (1 - dist/MAX_DIST) * (isWhite ? 0.22 : 0.14);
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.strokeStyle = isWhite ? 'rgba(42,127,255,' + alpha + ')' : 'rgba(255,255,255,' + alpha + ')';
+              ctx.lineWidth = 0.7;
+              ctx.stroke();
+            }
+          }
+          ctx.beginPath();
+          ctx.arc(nodes[i].x, nodes[i].y, nodes[i].accent ? nodes[i].r + 1 : nodes[i].r, 0, Math.PI*2);
+          if (isWhite) {
+            ctx.fillStyle = nodes[i].accent ? 'rgba(26,95,208,0.75)' : 'rgba(42,127,255,0.45)';
+          } else {
+            ctx.fillStyle = nodes[i].accent ? 'rgba(42,127,255,0.65)' : 'rgba(255,255,255,0.5)';
+          }
+          ctx.fill();
+        }
+      }
+
+      function update() {
+        nodes.forEach(function(n) {
+          n.x += n.vx; n.y += n.vy;
+          if (n.x < 0 || n.x > W) n.vx *= -1;
+          if (n.y < 0 || n.y > H) n.vy *= -1;
+        });
+      }
+
+      function loop() { update(); draw(); requestAnimationFrame(loop); }
+      window.addEventListener('resize', resize);
+      init(); loop();
+    }
+
+    sectionIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) initCanvas(el);
+    });
+  })();
+</script>
+</body>
+</html>
