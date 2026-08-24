@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mundus — CDL Drivers Wanted | Apply Nationwide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #f7f8fb;
+    --bg-2: #eef1f8;
+    --panel: #ffffff;
+    --blue: #2a7fff;
+    --blue-soft: #1c5fd1;
+    --white: #0a1226;
+    --grey: #5c6478;
+    --grey-dim: #7d879c;
+    --line: rgba(10,18,38,0.1);
+    --good: #159263;
+    --star: #0a1226;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .stars{position:fixed; inset:0; pointer-events:none; opacity:0.4; z-index:0;}
+  .wrap{max-width:640px; margin:0 auto; position:relative; z-index:1; padding:0 20px;}
+
+  header{padding:28px 0 8px; display:flex; align-items:center; gap:10px;}
+  .logo-mark{width:26px; height:26px; flex-shrink:0;}
+  .logo-text{font-weight:800; font-size:16px; letter-spacing:0.06em;}
+  .logo-text span{color:var(--blue-soft); font-weight:500; letter-spacing:0.02em;}
+
+  .hero{padding:36px 0 8px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--blue-soft); margin-bottom:18px;
+  }
+  .eyebrow::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--blue); box-shadow:0 0 10px var(--blue);}
+  h1{
+    font-size:clamp(30px,7vw,42px); line-height:1.08; font-weight:900; letter-spacing:-0.02em;
+    margin-bottom:16px;
+  }
+  h1 .accent{color:var(--blue-soft);}
+  .sub{font-size:16px; line-height:1.55; color:var(--grey); max-width:52ch; margin-bottom:28px;}
+
+  /* map / coverage strip (signature element — nationwide instead of one corridor) */
+  .coverage{
+    background: var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 20px 20px;
+    margin-bottom:28px;
+  }
+  .coverage-label{font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--grey-dim); margin-bottom:14px;}
+  .coverage-dots{position:relative; height:70px; margin-bottom:8px;}
+  .coverage-dots svg{width:100%; height:100%; display:block;}
+  .coverage-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-size:12px; font-weight:600; color:var(--blue-soft); background:rgba(42,127,255,0.1);
+    border:1px solid rgba(42,127,255,0.25); border-radius:20px; padding:5px 12px;
+  }
+
+  .stats{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    margin-bottom:28px;
+  }
+  .stat{background:var(--panel); padding:18px 12px; text-align:center;}
+  .stat .num{font-size:20px; font-weight:900; color:var(--blue-soft); letter-spacing:-0.02em;}
+  .stat .lbl{font-size:11px; color:var(--grey); margin-top:4px; line-height:1.3;}
+
+  .section-title{font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey-dim); margin:0 0 14px;}
+  .checklist{list-style:none; margin-bottom:32px;}
+  .checklist li{
+    display:flex; gap:12px; align-items:flex-start;
+    padding:12px 0; border-bottom:1px solid var(--line); font-size:14.5px; color:var(--white);
+  }
+  .checklist li:last-child{border-bottom:none;}
+  .checklist li::before{
+    content:'✓'; flex-shrink:0; width:20px; height:20px; border-radius:50%;
+    background:rgba(52,211,153,0.12); color:var(--good); font-size:12px; font-weight:900;
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+
+  .verify{
+    font-size:12.5px; color:var(--grey); background:var(--panel); border:1px solid var(--line);
+    border-radius:10px; padding:14px 16px; margin-bottom:36px; line-height:1.5;
+  }
+  .verify strong{color:var(--white);}
+
+  .form-card{
+    background:linear-gradient(180deg, var(--panel) 0%, var(--bg-2) 100%);
+    border:1px solid var(--line); border-radius:16px; padding:26px 22px 24px;
+    margin-bottom:40px;
+  }
+  .form-title{font-size:20px; font-weight:800; margin-bottom:4px;}
+  .form-sub{font-size:13px; color:var(--grey); margin-bottom:22px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:12.5px; font-weight:600; color:var(--grey); margin-bottom:6px;}
+  .field input[type="text"],
+  .field input[type="tel"],
+  .field input[type="email"],
+  .field select{
+    width:100%; background:#f2f4f9; border:1px solid var(--line); border-radius:9px;
+    padding:12px 13px; font-size:15px; color:var(--white); font-family:inherit;
+    appearance:none; -webkit-appearance:none;
+  }
+  .field select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%235c6478'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 14px center; padding-right:32px;
+  }
+  .field input:focus, .field select:focus{outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(42,127,255,0.18);}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .radio-row{display:flex; gap:10px; flex-wrap:wrap;}
+  .radio-opt{
+    flex:1; min-width:70px; text-align:center; border:1px solid var(--line); border-radius:9px; padding:10px 8px;
+    font-size:13px; font-weight:600; color:var(--grey); cursor:pointer; background:#f2f4f9;
+  }
+  .radio-opt input{display:none;}
+  .radio-opt.active{border-color:var(--blue); color:var(--white); background:rgba(42,127,255,0.12);}
+  .submit-btn{
+    width:100%; background:var(--blue); color:#fff; border:none; border-radius:10px;
+    padding:15px; font-size:15.5px; font-weight:800; font-family:inherit; cursor:pointer;
+    margin-top:6px; letter-spacing:0.01em;
+  }
+  .submit-btn:active{background:var(--blue-soft);}
+  .form-note{font-size:11.5px; color:var(--grey-dim); text-align:center; margin-top:12px; line-height:1.4;}
+
+  footer{padding:0 0 40px; text-align:center;}
+  footer .contact{font-size:13.5px; color:var(--grey); margin-bottom:6px;}
+  footer .contact a{color:var(--blue-soft); text-decoration:none;}
+  footer .tagline{font-size:11.5px; color:var(--grey-dim); letter-spacing:0.04em;}
+
+  .success{display:none; text-align:center; padding:20px 10px;}
+  .success .check{
+    width:52px; height:52px; border-radius:50%; background:rgba(52,211,153,0.12);
+    color:var(--good); font-size:26px; font-weight:900; display:flex; align-items:center;
+    justify-content:center; margin:0 auto 16px;
+  }
+  .success h3{font-size:19px; margin-bottom:8px;}
+  .success p{font-size:13.5px; color:var(--grey); line-height:1.5;}
+</style>
+</head>
+<body>
+
+<svg class="stars" id="starsSvg"></svg>
+
+<div class="wrap">
+
+  <header>
+    <svg class="logo-mark" viewBox="0 0 26 26" fill="none">
+      <circle cx="13" cy="13" r="2.4" fill="#2a7fff"/>
+      <circle cx="4" cy="6" r="1.4" fill="#5b9dff"/>
+      <circle cx="22" cy="5" r="1.4" fill="#5b9dff"/>
+      <circle cx="21" cy="21" r="1.4" fill="#5b9dff"/>
+      <circle cx="3" cy="20" r="1.4" fill="#5b9dff"/>
+      <line x1="13" y1="13" x2="4" y2="6" stroke="#2a7fff" stroke-width="0.8" opacity="0.5"/>
+      <line x1="13" y1="13" x2="22" y2="5" stroke="#2a7fff" stroke-width="0.8" opacity="0.5"/>
+      <line x1="13" y1="13" x2="21" y2="21" stroke="#2a7fff" stroke-width="0.8" opacity="0.5"/>
+      <line x1="13" y1="13" x2="3" y2="20" stroke="#2a7fff" stroke-width="0.8" opacity="0.5"/>
+    </svg>
+    <div class="logo-text">MUNDUS <span>· Driver Recruiting</span></div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Now Recruiting · Nationwide</div>
+    <h1>Any experience.<br>Any state.<br><span class="accent">One application.</span></h1>
+    <p class="sub">Mundus connects CDL drivers and owner-operators with vetted carriers across the U.S. — Local, Regional, OTR, Dedicated, or Owner-Operator. Tell us once, we match you.</p>
+
+    <div class="coverage">
+      <div class="coverage-label">Coverage · Continental U.S.</div>
+      <div class="coverage-dots">
+        <svg viewBox="0 0 300 70" preserveAspectRatio="none">
+          <circle cx="240" cy="18" r="4" fill="#2a7fff"/>
+          <circle cx="20" cy="20" r="4" fill="#2a7fff"/>
+          <circle cx="130" cy="12" r="3.5" fill="#5b9dff"/>
+          <circle cx="90" cy="45" r="3.5" fill="#5b9dff"/>
+          <circle cx="200" cy="48" r="3.5" fill="#5b9dff"/>
+          <circle cx="160" cy="58" r="3.5" fill="#5b9dff"/>
+          <circle cx="60" cy="55" r="3" fill="#3a5a99"/>
+          <circle cx="270" cy="45" r="3" fill="#3a5a99"/>
+          <line x1="20" y1="20" x2="130" y2="12" stroke="#1d2b4a" stroke-width="1"/>
+          <line x1="130" y1="12" x2="240" y2="18" stroke="#1d2b4a" stroke-width="1"/>
+          <line x1="90" y1="45" x2="160" y2="58" stroke="#1d2b4a" stroke-width="1"/>
+          <line x1="160" y1="58" x2="200" y2="48" stroke="#1d2b4a" stroke-width="1"/>
+          <line x1="20" y1="20" x2="60" y2="55" stroke="#1d2b4a" stroke-width="1"/>
+          <line x1="240" y1="18" x2="270" y2="45" stroke="#1d2b4a" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="coverage-tags">
+        <span class="tag">Local</span>
+        <span class="tag">Regional</span>
+        <span class="tag">OTR</span>
+        <span class="tag">Dedicated</span>
+        <span class="tag">Owner-Operator</span>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">All 50</div><div class="lbl">states covered</div></div>
+      <div class="stat"><div class="num">$0</div><div class="lbl">fees to drivers</div></div>
+      <div class="stat"><div class="num">1</div><div class="lbl">application, every route type</div></div>
+    </div>
+
+    <p class="section-title">Who we're looking for</p>
+    <ul class="checklist">
+      <li>Valid CDL — Class A or B</li>
+      <li>Any experience level, from new CDL holders to 10+ year veterans</li>
+      <li>Company drivers, lease-operators, and owner-operators all welcome</li>
+      <li>Based anywhere in the U.S. — we match you to carriers in your area or lane</li>
+    </ul>
+
+    <div class="verify">
+      <strong>How it works:</strong> Mundus is a driver placement partner — we match you with vetted trucking companies actively hiring in your area or preferred lane. <strong>No fees to drivers, ever.</strong> We work with the carriers.
+    </div>
+  </section>
+
+  <section class="form-card" id="formSection">
+    <div class="form-title">Apply in 60 seconds</div>
+    <div class="form-sub">One form, every driver type. We'll call or text you back.</div>
+
+    <form id="driverForm" action="https://formspree.io/f/xppagdvy" method="POST">
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" required autocomplete="name">
+      </div>
+
+      <div class="two-col">
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(555) 123-4567">
+        </div>
+        <div class="field">
+          <label for="email">Email (optional)</label>
+          <input type="email" id="email" name="email" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="location">City & state</label>
+        <input type="text" id="location" name="location" required placeholder="e.g. Dallas, TX">
+      </div>
+
+      <div class="field">
+        <label>Driver type</label>
+        <div class="radio-row" id="driverTypeRow">
+          <label class="radio-opt"><input type="radio" name="driver_type" value="Company Driver" required>Company</label>
+          <label class="radio-opt"><input type="radio" name="driver_type" value="Owner-Operator">Owner-Op</label>
+          <label class="radio-opt"><input type="radio" name="driver_type" value="Lease-Operator">Lease-Op</label>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="field">
+          <label for="cdl_class">CDL class</label>
+          <select id="cdl_class" name="cdl_class" required>
+            <option value="" disabled selected>Select</option>
+            <option>Class A</option>
+            <option>Class B</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="experience">Experience</label>
+          <select id="experience" name="experience" required>
+            <option value="" disabled selected>Select</option>
+            <option>New / under 1 year</option>
+            <option>1–2 years</option>
+            <option>3–5 years</option>
+            <option>6–10 years</option>
+            <option>10+ years</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Preferred route type</label>
+        <div class="radio-row" id="routeRow">
+          <label class="radio-opt"><input type="radio" name="route_type" value="Local" required>Local</label>
+          <label class="radio-opt"><input type="radio" name="route_type" value="Regional">Regional</label>
+          <label class="radio-opt"><input type="radio" name="route_type" value="OTR">OTR</label>
+          <label class="radio-opt"><input type="radio" name="route_type" value="Dedicated">Dedicated</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Clean record? (No DUI/drug violation in 5 yrs, max 3 preventable accidents in 3 yrs)</label>
+        <div class="radio-row" id="cleanRow">
+          <label class="radio-opt"><input type="radio" name="clean_record" value="Yes" required>Yes</label>
+          <label class="radio-opt"><input type="radio" name="clean_record" value="No">No</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Best way to reach you</label>
+        <div class="radio-row" id="contactRow">
+          <label class="radio-opt"><input type="radio" name="contact_method" value="Call" required>Call</label>
+          <label class="radio-opt"><input type="radio" name="contact_method" value="Text">Text</label>
+          <label class="radio-opt"><input type="radio" name="contact_method" value="WhatsApp">WhatsApp</label>
+          <label class="radio-opt"><input type="radio" name="contact_method" value="Viber">Viber</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Open to relocating for the right opportunity?</label>
+        <div class="radio-row" id="relocateRow">
+          <label class="radio-opt"><input type="radio" name="relocate" value="Yes" required>Yes</label>
+          <label class="radio-opt"><input type="radio" name="relocate" value="No">No</label>
+          <label class="radio-opt"><input type="radio" name="relocate" value="Depends on the offer">Depends</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="best_time">Best time to reach you</label>
+        <select id="best_time" name="best_time">
+          <option value="" disabled selected>Select</option>
+          <option>Morning</option>
+          <option>Afternoon</option>
+          <option>Evening</option>
+          <option>Anytime</option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Application</button>
+      <p class="form-note">No fees, no obligation. A Mundus recruiter will reach out directly.</p>
+    </form>
+
+    <div class="success" id="successState">
+      <div class="check">✓</div>
+      <h3>Got it — thank you.</h3>
+      <p>A Mundus recruiter will call or text you shortly to match you with the right opportunity.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="contact">📧 <a href="mailto:hello@mundus.agency">hello@mundus.agency</a> &nbsp;·&nbsp; 🌐 <a href="https://mundus.agency">mundus.agency</a></div>
+    <div class="tagline">MUNDUS — We Source. You Scale.</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    const svg = document.getElementById('starsSvg');
+    const ns = 'http://www.w3.org/2000/svg';
+    const w = window.innerWidth, h = Math.max(window.innerHeight, document.body.scrollHeight);
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    const points = [];
+    const count = Math.floor((w*h)/45000);
+    for(let i=0;i<count;i++){
+      points.push({x: Math.random()*w, y: Math.random()*h});
+    }
+    points.forEach((p)=>{
+      const c = document.createElementNS(ns,'circle');
+      c.setAttribute('cx',p.x); c.setAttribute('cy',p.y);
+      c.setAttribute('r', Math.random()*1.3+0.4);
+      c.setAttribute('fill','#0a1226');
+      c.setAttribute('opacity', (Math.random()*0.35+0.08).toFixed(2));
+      svg.appendChild(c);
+    });
+  })();
+
+  document.querySelectorAll('.radio-row').forEach(row=>{
+    row.addEventListener('click', e=>{
+      const opt = e.target.closest('.radio-opt');
+      if(!opt) return;
+      row.querySelectorAll('.radio-opt').forEach(o=>o.classList.remove('active'));
+      opt.classList.add('active');
+    });
+  });
+
+  const form = document.getElementById('driverForm');
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    btn.disabled = true; btn.textContent = 'Submitting...';
+    try{
+      const res = await fetch(form.action, {
+        method:'POST',
+        body:new FormData(form),
+        headers:{'Accept':'application/json'}
+      });
+      if(res.ok){
+        document.getElementById('formSection').querySelector('.form-title').style.display='none';
+        document.getElementById('formSection').querySelector('.form-sub').style.display='none';
+        form.style.display='none';
+        document.getElementById('successState').style.display='block';
+      } else {
+        btn.disabled = false; btn.textContent = 'Submit Application';
+        alert('Something went wrong — please try again or call us directly.');
+      }
+    } catch(err){
+      btn.disabled = false; btn.textContent = 'Submit Application';
+      alert('Something went wrong — please try again or call us directly.');
+    }
+  });
+</script>
+
+</body>
+</html>
