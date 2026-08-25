@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mundus — Partner With Us | Global Recruitment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #f7f8fb;
+    --bg-2: #eef1f8;
+    --panel: #ffffff;
+    --blue: #2a7fff;
+    --blue-soft: #1c5fd1;
+    --white: #0a1226;
+    --grey: #5c6478;
+    --grey-dim: #7d879c;
+    --line: rgba(10,18,38,0.1);
+    --good: #159263;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .stars{position:fixed; inset:0; pointer-events:none; opacity:0.4; z-index:0;}
+  .wrap{max-width:640px; margin:0 auto; position:relative; z-index:1; padding:0 20px;}
+
+  header{padding:28px 0 8px; display:flex; align-items:center; gap:10px;}
+  .logo-mark{width:26px; height:26px; flex-shrink:0;}
+  .logo-text{font-weight:800; font-size:16px; letter-spacing:0.06em;}
+  .logo-text span{color:var(--blue-soft); font-weight:500; letter-spacing:0.02em;}
+
+  .hero{padding:36px 0 8px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--blue-soft); margin-bottom:18px;
+  }
+  .eyebrow::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--blue); box-shadow:0 0 10px var(--blue);}
+  h1{
+    font-size:clamp(30px,7vw,42px); line-height:1.08; font-weight:900; letter-spacing:-0.02em;
+    margin-bottom:16px;
+  }
+  h1 .accent{color:var(--blue-soft);}
+  .sub{font-size:16px; line-height:1.55; color:var(--grey); max-width:52ch; margin-bottom:28px;}
+
+  /* global network diagram (signature element) */
+  .coverage{
+    background: var(--panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 20px 20px;
+    margin-bottom:28px;
+  }
+  .coverage-label{font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--grey-dim); margin-bottom:14px;}
+  .coverage-dots{position:relative; height:70px; margin-bottom:8px;}
+  .coverage-dots svg{width:100%; height:100%; display:block;}
+  .coverage-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-size:12px; font-weight:600; color:var(--blue-soft); background:rgba(42,127,255,0.1);
+    border:1px solid rgba(42,127,255,0.25); border-radius:20px; padding:5px 12px;
+  }
+
+  .stats{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    margin-bottom:28px;
+  }
+  .stat{background:var(--panel); padding:18px 12px; text-align:center;}
+  .stat .num{font-size:20px; font-weight:900; color:var(--blue-soft); letter-spacing:-0.02em;}
+  .stat .lbl{font-size:11px; color:var(--grey); margin-top:4px; line-height:1.3;}
+
+  .section-title{font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--grey-dim); margin:0 0 14px;}
+  .checklist{list-style:none; margin-bottom:32px;}
+  .checklist li{
+    display:flex; gap:12px; align-items:flex-start;
+    padding:12px 0; border-bottom:1px solid var(--line); font-size:14.5px; color:var(--white);
+  }
+  .checklist li:last-child{border-bottom:none;}
+  .checklist li::before{
+    content:'✓'; flex-shrink:0; width:20px; height:20px; border-radius:50%;
+    background:rgba(21,146,99,0.12); color:var(--good); font-size:12px; font-weight:900;
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+
+  .verify{
+    font-size:12.5px; color:var(--grey); background:var(--panel); border:1px solid var(--line);
+    border-radius:10px; padding:14px 16px; margin-bottom:36px; line-height:1.5;
+  }
+  .verify strong{color:var(--white);}
+
+  .form-card{
+    background:linear-gradient(180deg, var(--panel) 0%, var(--bg-2) 100%);
+    border:1px solid var(--line); border-radius:16px; padding:26px 22px 24px;
+    margin-bottom:40px;
+  }
+  .form-title{font-size:20px; font-weight:800; margin-bottom:4px;}
+  .form-sub{font-size:13px; color:var(--grey); margin-bottom:22px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:12.5px; font-weight:600; color:var(--grey); margin-bottom:6px;}
+  .field input[type="text"],
+  .field input[type="tel"],
+  .field input[type="email"],
+  .field select,
+  .field textarea{
+    width:100%; background:#f2f4f9; border:1px solid var(--line); border-radius:9px;
+    padding:12px 13px; font-size:15px; color:var(--white); font-family:inherit;
+    appearance:none; -webkit-appearance:none;
+  }
+  .field textarea{resize:vertical; min-height:84px; line-height:1.5;}
+  .field select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%235c6478'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 14px center; padding-right:32px;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(42,127,255,0.18);}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .radio-row{display:flex; gap:10px; flex-wrap:wrap;}
+  .radio-opt{
+    flex:1; min-width:70px; text-align:center; border:1px solid var(--line); border-radius:9px; padding:10px 8px;
+    font-size:13px; font-weight:600; color:var(--grey); cursor:pointer; background:#f2f4f9;
+  }
+  .radio-opt input{display:none;}
+  .radio-opt.active{border-color:var(--blue); color:var(--white); background:rgba(42,127,255,0.12);}
+  .submit-btn{
+    width:100%; background:var(--blue); color:#fff; border:none; border-radius:10px;
+    padding:15px; font-size:15.5px; font-weight:800; font-family:inherit; cursor:pointer;
+    margin-top:6px; letter-spacing:0.01em;
+  }
+  .submit-btn:active{background:var(--blue-soft);}
+  .form-note{font-size:11.5px; color:var(--grey-dim); text-align:center; margin-top:12px; line-height:1.4;}
+
+  footer{padding:0 0 40px; text-align:center;}
+  footer .contact{font-size:13.5px; color:var(--grey); margin-bottom:6px;}
+  footer .contact a{color:var(--blue-soft); text-decoration:none;}
+  footer .tagline{font-size:11.5px; color:var(--grey-dim); letter-spacing:0.04em;}
+
+  .success{display:none; text-align:center; padding:20px 10px;}
+  .success .check{
+    width:52px; height:52px; border-radius:50%; background:rgba(21,146,99,0.12);
+    color:var(--good); font-size:26px; font-weight:900; display:flex; align-items:center;
+    justify-content:center; margin:0 auto 16px;
+  }
+  .success h3{font-size:19px; margin-bottom:8px;}
+  .success p{font-size:13.5px; color:var(--grey); line-height:1.5;}
+</style>
+</head>
+<body>
+
+<svg class="stars" id="starsSvg"></svg>
+
+<div class="wrap">
+
+  <header>
+    <svg class="logo-mark" viewBox="0 0 26 26" fill="none">
+      <circle cx="13" cy="13" r="2.4" fill="#2a7fff"/>
+      <circle cx="4" cy="6" r="1.4" fill="#1c5fd1"/>
+      <circle cx="22" cy="5" r="1.4" fill="#1c5fd1"/>
+      <circle cx="21" cy="21" r="1.4" fill="#1c5fd1"/>
+      <circle cx="3" cy="20" r="1.4" fill="#1c5fd1"/>
+      <line x1="13" y1="13" x2="4" y2="6" stroke="#2a7fff" stroke-width="0.8" opacity="0.5"/>
+      <line x1="13" y1="13" x2="22" y2="5" stroke="#2a7fff" stroke-width="0.8" opacity="0.5"/>
+      <line x1="13" y1="13" x2="21" y2="21" stroke="#2a7fff" stroke-width="0.8" opacity="0.5"/>
+      <line x1="13" y1="13" x2="3" y2="20" stroke="#2a7fff" stroke-width="0.8" opacity="0.5"/>
+    </svg>
+    <div class="logo-text">MUNDUS <span>· Recruitment Partners</span></div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Partner With Mundus</div>
+    <h1>Any role.<br>Any country.<br><span class="accent">One recruiting partner.</span></h1>
+    <p class="sub">Mundus sources and places candidates for companies worldwide — across trucking &amp; transportation, tech, executive, construction &amp; labor, and beyond. Tell us what you need, we'll take it from there.</p>
+
+    <div class="coverage">
+      <div class="coverage-label">Sourcing network · Global</div>
+      <div class="coverage-tags">
+        <span class="tag">Trucking & Transportation</span>
+        <span class="tag">Tech & Executive</span>
+        <span class="tag">Construction & Labor</span>
+        <span class="tag">EU Labor</span>
+        <span class="tag">Ready-to-Go Candidates</span>
+        <span class="tag">Custom Sourcing</span>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">7</div><div class="lbl">recruiting verticals</div></div>
+      <div class="stat"><div class="num">Global</div><div class="lbl">sourcing reach</div></div>
+      <div class="stat"><div class="num">1</div><div class="lbl">point of contact, start to placement</div></div>
+    </div>
+
+    <p class="section-title">How we work with you</p>
+    <ul class="checklist">
+      <li>Tell us the role, location, and volume — we scope a sourcing plan</li>
+      <li>Already have a ready-to-go pipeline of pre-screened candidates for select roles</li>
+      <li>Vetted, pre-screened candidates delivered on your timeline</li>
+      <li>Flexible engagement — one-off placements or ongoing pipeline</li>
+      <li>Direct contact throughout, no black-box process</li>
+    </ul>
+
+    <div class="verify">
+      <strong>Who we work with:</strong> Startups to established operators, across industries and geographies. No project is too niche or too large to scope.
+    </div>
+  </section>
+
+  <section class="form-card" id="formSection">
+    <div class="form-title">Tell us what you need</div>
+    <div class="form-sub">One short form — we'll follow up directly, not by email.</div>
+
+    <form id="clientForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="field">
+        <label for="company">Company name</label>
+        <input type="text" id="company" name="company" required autocomplete="organization">
+      </div>
+
+      <div class="two-col">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="role">Your role</label>
+          <input type="text" id="role" name="role" placeholder="e.g. Founder, HR Lead">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" name="phone" required placeholder="Include country code">
+      </div>
+
+      <div class="field">
+        <label>Best way to reach you</label>
+        <div class="radio-row" id="contactRow">
+          <label class="radio-opt"><input type="radio" name="contact_method" value="Call" required>Call</label>
+          <label class="radio-opt"><input type="radio" name="contact_method" value="Text">Text</label>
+          <label class="radio-opt"><input type="radio" name="contact_method" value="WhatsApp">WhatsApp</label>
+          <label class="radio-opt"><input type="radio" name="contact_method" value="Viber">Viber</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="country">Country / region of hiring need</label>
+        <input type="text" id="country" name="country" required placeholder="e.g. Germany, USA, worldwide">
+      </div>
+
+      <div class="field">
+        <label for="industry">Industry / vertical</label>
+        <select id="industry" name="industry" required>
+          <option value="" disabled selected>Select</option>
+          <option>Trucking & Transportation</option>
+          <option>Tech & Executive</option>
+          <option>Construction & Labor</option>
+          <option>EU Labor Recruiting</option>
+          <option>Other / Not listed</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>What are you looking for?</label>
+        <div class="radio-row" id="needTypeRow">
+          <label class="radio-opt"><input type="radio" name="need_type" value="New sourcing" required>New sourcing</label>
+          <label class="radio-opt"><input type="radio" name="need_type" value="Ready-to-go candidates">Ready-to-go candidates</label>
+          <label class="radio-opt"><input type="radio" name="need_type" value="Both / not sure">Both / not sure</label>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="field">
+          <label for="positions">Position(s) to fill</label>
+          <input type="text" id="positions" name="positions" required placeholder="e.g. CDL drivers, engineers">
+        </div>
+        <div class="field">
+          <label for="volume">How many hires?</label>
+          <select id="volume" name="volume">
+            <option value="" disabled selected>Select</option>
+            <option>Just 1</option>
+            <option>2–5</option>
+            <option>6–20</option>
+            <option>20+</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="details">Anything else we should know?</label>
+        <textarea id="details" name="details" placeholder="Timeline, budget, specific requirements..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Send Inquiry</button>
+      <p class="form-note">We'll reach out directly by phone, text, or WhatsApp — whichever you picked above.</p>
+    </form>
+
+    <div class="success" id="successState">
+      <div class="check">✓</div>
+      <h3>Got it — thank you.</h3>
+      <p>A Mundus team member will reach out directly to scope your hiring needs.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="contact">📧 <a href="mailto:hello@mundus.agency">hello@mundus.agency</a> &nbsp;·&nbsp; 🌐 <a href="https://mundus.agency">mundus.agency</a></div>
+    <div class="tagline">MUNDUS — We Source. You Scale.</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    const svg = document.getElementById('starsSvg');
+    const ns = 'http://www.w3.org/2000/svg';
+    const w = window.innerWidth, h = Math.max(window.innerHeight, document.body.scrollHeight);
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    const points = [];
+    const count = Math.floor((w*h)/45000);
+    for(let i=0;i<count;i++){
+      points.push({x: Math.random()*w, y: Math.random()*h});
+    }
+    points.forEach((p)=>{
+      const c = document.createElementNS(ns,'circle');
+      c.setAttribute('cx',p.x); c.setAttribute('cy',p.y);
+      c.setAttribute('r', Math.random()*1.3+0.4);
+      c.setAttribute('fill','#0a1226');
+      c.setAttribute('opacity', (Math.random()*0.35+0.08).toFixed(2));
+      svg.appendChild(c);
+    });
+  })();
+
+  document.querySelectorAll('.radio-row').forEach(row=>{
+    row.addEventListener('click', e=>{
+      const opt = e.target.closest('.radio-opt');
+      if(!opt) return;
+      row.querySelectorAll('.radio-opt').forEach(o=>o.classList.remove('active'));
+      opt.classList.add('active');
+    });
+  });
+
+  const form = document.getElementById('clientForm');
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    try{
+      const res = await fetch(form.action, {
+        method:'POST',
+        body:new FormData(form),
+        headers:{'Accept':'application/json'}
+      });
+      if(res.ok){
+        document.getElementById('formSection').querySelector('.form-title').style.display='none';
+        document.getElementById('formSection').querySelector('.form-sub').style.display='none';
+        form.style.display='none';
+        document.getElementById('successState').style.display='block';
+      } else {
+        btn.disabled = false; btn.textContent = 'Send Inquiry';
+        alert('Something went wrong — please try again or contact us directly.');
+      }
+    } catch(err){
+      btn.disabled = false; btn.textContent = 'Send Inquiry';
+      alert('Something went wrong — please try again or contact us directly.');
+    }
+  });
+</script>
+
+</body>
+</html>
