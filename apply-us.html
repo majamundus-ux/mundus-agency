@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mundus — Apply Now | U.S. Positions</title>
+
+<meta property="og:title" content="Apply Now — U.S. Positions | Mundus">
+<meta property="og:description" content="One application, multiple U.S. opportunities. Mundus matches you with vetted companies hiring now. No fees, ever.">
+<meta property="og:image" content="https://mundus.agency/og-thumbnail-apply-us.png">
+<meta property="og:url" content="https://mundus.agency/apply-us.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mundus.agency/og-thumbnail-apply-us.png">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+
+  body {
+    background:#ffffff;
+    color:#0f1a3c;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    background: #0a1240;
+    color:#fff;
+    padding: 22px 6vw;
+    position:relative;
+    overflow:hidden;
+  }
+  header::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 120px 80px, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 220px 40px, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1.5px 1.5px at 320px 100px, rgba(255,255,255,0.25), transparent),
+      radial-gradient(1px 1px at 420px 20px, rgba(255,255,255,0.3), transparent);
+    background-size: 500px 150px;
+    opacity:0.6;
+  }
+  .logo { font-size:22px; font-weight:800; letter-spacing:1px; position:relative; z-index:1; }
+  .logo span { color:#5b8def; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background: linear-gradient(160deg, #0a1240 0%, #101c5c 60%, #16268a 100%);
+    color:#fff;
+    padding: 70px 6vw 90px 6vw;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 8% 20%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1.5px 1.5px at 25% 60%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 40% 15%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(2px 2px at 60% 45%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 75% 70%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1.5px 1.5px at 90% 25%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1px 1px at 95% 80%, rgba(255,255,255,0.25), transparent);
+    opacity:0.7;
+  }
+  .hero-inner { position:relative; z-index:1; max-width:720px; }
+  .badge {
+    display:inline-block;
+    background:rgba(91,141,239,0.15);
+    border:1px solid rgba(91,141,239,0.4);
+    color:#8fb2ff;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:22px;
+  }
+  .hero h1 {
+    font-size:44px;
+    font-weight:800;
+    line-height:1.15;
+    margin-bottom:18px;
+  }
+  .hero h1 span { color:#5b8def; }
+  .hero p {
+    font-size:18px;
+    font-weight:400;
+    color:#c3cdf0;
+    line-height:1.55;
+    max-width:560px;
+  }
+  .hero-tags {
+    margin-top:26px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .hero-tag {
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    padding:6px 12px;
+    border-radius:6px;
+    color:#dbe3ff;
+  }
+
+  /* ---------- Positions strip ---------- */
+  .positions {
+    padding: 50px 6vw;
+    background:#f6f8ff;
+  }
+  .positions h2 {
+    font-size:22px;
+    font-weight:800;
+    color:#0f1a3c;
+    margin-bottom:22px;
+    text-align:center;
+  }
+  .position-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:16px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .position-card {
+    background:#fff;
+    border:1px solid #e4e9fb;
+    border-radius:14px;
+    padding:20px;
+    box-shadow: 0 6px 18px rgba(15,26,60,0.05);
+  }
+  .position-card .role {
+    font-weight:700;
+    font-size:15.5px;
+    color:#0f1a3c;
+    margin-bottom:6px;
+  }
+  .position-card .desc {
+    font-size:13.5px;
+    color:#5c6690;
+    line-height:1.4;
+  }
+
+  /* ---------- Form ---------- */
+  .form-section {
+    padding: 60px 6vw 90px 6vw;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .form-section h2 {
+    font-size:26px;
+    font-weight:800;
+    color:#0f1a3c;
+    margin-bottom:8px;
+    text-align:center;
+  }
+  .form-section .sub {
+    text-align:center;
+    color:#5c6690;
+    font-size:15px;
+    margin-bottom:34px;
+  }
+  .us-only-note {
+    background:#fff7e6;
+    border:1px solid #ffe1a8;
+    color:#8a5a00;
+    font-size:13.5px;
+    font-weight:600;
+    padding:10px 16px;
+    border-radius:10px;
+    margin-bottom:26px;
+    text-align:center;
+  }
+
+  form { display:flex; flex-direction:column; gap:16px; }
+  .two-col { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+  .field label {
+    display:block;
+    font-size:13.5px;
+    font-weight:700;
+    color:#0f1a3c;
+    margin-bottom:6px;
+  }
+  .field input, .field select, .field textarea {
+    width:100%;
+    padding:12px 14px;
+    border:1.5px solid #dde3f5;
+    border-radius:10px;
+    font-size:14.5px;
+    color:#0f1a3c;
+    background:#fff;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline:none;
+    border-color:#5b8def;
+  }
+  .field textarea { resize:vertical; min-height:80px; }
+
+  .submit-btn {
+    margin-top:8px;
+    background:#16268a;
+    color:#fff;
+    font-weight:700;
+    font-size:16px;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    transition: background 0.2s ease;
+  }
+  .submit-btn:hover { background:#0f1a3c; }
+
+  .disclaimer {
+    font-size:12.5px;
+    color:#8b96bd;
+    text-align:center;
+    margin-top:14px;
+    line-height:1.5;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background:#0a1240;
+    color:#c3cdf0;
+    padding:30px 6vw;
+    text-align:center;
+    font-size:13.5px;
+  }
+  footer a { color:#8fb2ff; text-decoration:none; }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size:32px; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" style="display:flex; align-items:center;">
+    <img src="mundus-logo.png" alt="Mundus" style="height:44px; width:auto; filter:brightness(0) invert(1);">
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="badge">Hiring Now · U.S. Only</div>
+    <h1>Looking for a job? <span>Apply once.</span></h1>
+    <p>Mundus matches you with vetted U.S. companies hiring now across multiple roles. One application — we do the matching.</p>
+    <div class="hero-tags">
+      <div class="hero-tag">No fees, ever</div>
+      <div class="hero-tag">Remote & on-site roles</div>
+      <div class="hero-tag">We contact you directly</div>
+    </div>
+  </div>
+</section>
+
+<section class="positions">
+  <h2>Currently hiring for roles including:</h2>
+  <div class="position-grid">
+    <div class="position-card">
+      <div class="role">Customer Support</div>
+      <div class="desc">Remote & on-site, multiple industries</div>
+    </div>
+    <div class="position-card">
+      <div class="role">CDL Drivers</div>
+      <div class="desc">Company, owner-operator & lease</div>
+    </div>
+    <div class="position-card">
+      <div class="role">Sales & Marketing</div>
+      <div class="desc">Inbound, outbound, and account roles</div>
+    </div>
+    <div class="position-card">
+      <div class="role">Tech & IT</div>
+      <div class="desc">Development, support, and infrastructure</div>
+    </div>
+    <div class="position-card">
+      <div class="role">Admin & Business Support</div>
+      <div class="desc">Executive, operations, and finance-adjacent</div>
+    </div>
+    <div class="position-card">
+      <div class="role">Other Roles</div>
+      <div class="desc">Tell us what you're looking for</div>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <h2>Apply Now</h2>
+  <p class="sub">Takes about a minute. We'll reach out if there's a match.</p>
+  <div class="us-only-note">📍 This application is open to candidates currently located in the United States only.</div>
+
+  <form action="https://formspree.io/f/mjyvbven" method="POST">
+
+    <div class="two-col">
+      <div class="field">
+        <label for="first_name">First name</label>
+        <input type="text" id="first_name" name="first_name" required>
+      </div>
+      <div class="field">
+        <label for="last_name">Last name</label>
+        <input type="text" id="last_name" name="last_name" required>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="field">
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" required placeholder="e.g. Dallas">
+      </div>
+      <div class="field">
+        <label for="state">State</label>
+        <select id="state" name="state" required>
+          <option value="" disabled selected>Select state</option>
+          <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+          <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+          <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+          <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+          <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+          <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+          <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+          <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+          <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+          <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+          <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+          <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+          <option>Wisconsin</option><option>Wyoming</option><option>District of Columbia</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="position">Position you're interested in</label>
+      <select id="position" name="position" required>
+        <option value="" disabled selected>Select a category</option>
+        <option>Customer Support</option>
+        <option>CDL Driver</option>
+        <option>Sales & Marketing</option>
+        <option>Tech & IT</option>
+        <option>Admin & Business Support</option>
+        <option>Other / Not sure</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="experience">Relevant experience</label>
+      <textarea id="experience" name="experience" placeholder="Briefly describe your experience and current work status"></textarea>
+    </div>
+
+    <div class="two-col">
+      <div class="field">
+        <label for="contact_method">Best way to reach you</label>
+        <select id="contact_method" name="contact_method" required>
+          <option value="" disabled selected>Select</option>
+          <option>Call</option>
+          <option>Text</option>
+          <option>WhatsApp</option>
+          <option>Viber</option>
+          <option>Email</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="contact_time">Best time to reach you</label>
+        <select id="contact_time" name="contact_time" required>
+          <option value="" disabled selected>Select</option>
+          <option>Morning</option>
+          <option>Afternoon</option>
+          <option>Evening</option>
+          <option>Anytime</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit Application</button>
+    <div class="disclaimer">By applying, you confirm you are currently located in the United States. Mundus never charges candidates a fee.</div>
+  </form>
+</section>
+
+<footer>
+  <div style="margin-bottom:8px; font-weight:700; color:#fff;">MUNDUS — We Source. You Scale.</div>
+  <div>📧 <a href="mailto:hello@mundus.agency">hello@mundus.agency</a> &nbsp;|&nbsp; 📱 +389 78 854 925 / +389 78 296 149</div>
+</footer>
+
+</body>
+</html>
